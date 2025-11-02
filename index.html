@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-bar">
+            <input type="text" id="cityInput" placeholder="Enter city name" value="">
+            <input type="number" id="daysInput" min="1" max="7" value="3" placeholder="Days">
+            <button id="searchBtn" onclick="fetchWeather()">Get Weather</button>
+        </div>
+
+        <!-- Initial State -->
+        <div id="initialState" class="initial-state">
+            <div class="welcome-icon">🌤️</div>
+            <h2>Weather Forecast Dashboard</h2>
+            <p>Enter a city name and number of days to get started</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-container" style="display: none;">
+            <h2>Error</h2>
+            <p id="errorMessage"></p>
+            <p class="error-hint">Make sure your API is running on http://localhost:8080</p>
+            <button onclick="fetchWeather()">Retry</button>
+        </div>
+
+        <!-- Weather Content -->
+        <div id="weatherContent" style="display: none;">
+            <!-- Current Weather Card -->
+            <div class="current-weather">
+                <div class="current-info">
+                    <div class="current-date-time">
+                        <div id="currentDate" class="current-date"></div>
+                        <div id="currentTime" class="current-time"></div>
+                    </div>
+                    <h1 id="cityName"></h1>
+                    <p id="location"></p>
+                    <p id="condition" class="condition"></p>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">💧</span>
+                            <div>
+                                <div class="detail-label">Feels Like</div>
+                                <div id="feelsLike" class="detail-value">--°</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div>
+                                <div class="detail-label">Wind</div>
+                                <div id="wind" class="detail-value">-- km/h</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💦</span>
+                            <div>
+                                <div class="detail-label">Humidity</div>
+                                <div id="humidity" class="detail-value">--%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="current-temp">
+                    <div id="weatherIcon" class="weather-icon-large"></div>
+                    <div id="temperature" class="temperature"></div>
+                </div>
+            </div>
+
+            <!-- Forecast Section -->
+            <div id="forecastCards" class="forecast-grid"></div>
+
+            <!-- Footer -->
+            <div class="footer">
+                Last updated: <span id="lastUpdate"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
